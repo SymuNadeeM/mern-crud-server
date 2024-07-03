@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
+require("dotenv").config()
 
 const app = express()
 app.use(cors())
@@ -55,7 +56,7 @@ app.delete("/delete/:id", async(req,res)=>{
 //   res.json({message: "server crud running"})
 // })
 
-mongoose.connect("mongodb://127.0.0.1:27017/crudOperation")
+mongoose.connect(process.env.MONOGO_URL)
 .then(()=>{
   console.log("connect to DB")
   app.listen(PORT,()=>console.log("server is running"))
